@@ -1,0 +1,64 @@
+<!-- 상세 내용 -->
+<div id="proj_context" class="col-md-12 col-sm-12 col-xs-12" style="border:0px solid #e5e5e5;">
+
+  <h3 class="prod_title">프로젝트 정보</h3>
+  <h4>
+    프로젝트 유형:
+    <% if(proj_info[0].project_type == "P01") { %>
+      아이디어 도출
+      <% } else if(proj_info[0].project_type == "P02") { %>
+        개발 미완료
+        <% } else { %>
+          개발 완료
+          <% } %>
+  </h4>
+  <h4>
+    등록일:
+    <%= proj_info[0].date.getFullYear() %>/
+      <%= proj_info[0].date.getMonth()+1 %>/
+        <%= proj_info[0].date.getDate() %>
+  </h4>
+
+  <h3 class="prod_title">키워드</h3>
+  <h4>
+    <%= proj_info[0].topic %>
+  </h4>
+  <br />
+
+  <h3 class="prod_title">대표 이미지</h3>
+  <h4>
+    <img src="images/<%= proj_info[0].imageURL %>" />
+  </h4>
+  <br />
+
+  <h3 class="prod_title">상세 내용</h3>
+  <h4>
+    <%= proj_info[0].description %>
+  </h4>
+  <br />
+
+  <h3 class="prod_title">참고 자료</h3>
+  <% for(var i in referData) { %>
+    <h4>
+      <% if(referData[i].url != '') { %>
+        참고 URL :
+        <%= referData[i].url %>,
+          <% } if(referData[i].refer_book != '') { %>
+            참고 서적 :
+            <%= referData[i].refer_book %>,
+              <% } %>
+                참고 내용 :
+                <%= referData[i].refer_context %>
+    </h4>
+    <% } %>
+      <br />
+
+      <h3 class="prod_title">산출물</h3>
+      <h4>
+        <a class="btn btn-primary btn-sm" href="/resultDownload/<%= proj_info[0].resultURL %>">
+          <i class="fa fa-download"></i> 다운로드</a> Filename:
+        <%= proj_info[0].resultURL %>
+      </h4>
+      
+</div>
+<!-- //상세 내용 -->

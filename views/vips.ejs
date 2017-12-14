@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <% include ./link.ejs %>
+    <link href="./vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
+    <!-- 만든거 -->
+    <style>
+      .x_content p,
+      .x_content label,
+      .x_content h5,
+      tr,
+      td,
+      button {
+        color: rgb(102, 102, 102);
+      }
+    </style>
+
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+
+      <!-- navbar + 사이드바 -->
+      <% include ./navbar.ejs %>
+        <!-- /navbar + 사이드바 -->
+
+        <div class="push"></div>
+
+        <!-- Content -->
+        <div class="right_col" role="main">
+
+          <div class="">
+
+            <div class="page-title">
+              <div class="title_left">
+                <h3>우수 학생</h3>
+              </div>
+
+              <div class="title_right">
+
+                <% include ./search_bar.ejs %>
+
+                  <div class="title_right">
+                    <div class="form-group pull-right top_search">
+                      <a href="/addLinks" class="btn btn-success" role="button" style="background: #5CB85C; color: white;">프로젝트 등록하기</a>
+                    </div>
+                  </div>
+
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="row">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <div class="title_left">
+                        <h3>우수 학생 목록</h3>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+
+                      <br/>
+                      <p>
+                      </p>
+
+                      <table id="datatable-keytable" class="table jambo_table table-striped table-bordered table-hover bulk_action">
+                        <thead>
+                          <tr style="background: #405467; color: #eee;">
+                            <th width="20%">학번</th>
+                            <th width="25%">이름</th>
+                            <th width="15%">등록한 프로젝트 수</th>
+                            <th width="15%">성과 수</th>
+                          </tr>
+                        </thead>
+
+                        <tbody id="tbody">
+                          <% for(var i in list) { %>
+                            <tr class="even pointer">
+                              <td class="a-center ">
+                                <!-- <input type="checkbox" class="flat" name="table_records"> -->
+                                <%= list[i].id %>
+                              </td>
+                              <td onClick="location.href='/proj_info?num=<%= list[i].project_number %>'" style="cursor:pointer;">
+                                <%= list[i].name %>
+                              </td>
+                              <td onClick="location.href='/proj_info?num=<%= list[i].project_number %>'" style="cursor:pointer;">
+                                10
+                              </td>
+                              <td>
+                                20
+                              </td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <!-- /Content -->
+    </div>
+
+    <% include ./footer.ejs %>
+  </div>
+</body>
+<% include ./script.ejs %>
+  <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+  <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+  <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+  <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+  <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+  <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+  <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+  <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+  <script src="../vendors/jszip/dist/jszip.min.js"></script>
+  <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+  <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+  <script src="./js/searchbar.js"></script>
+
+</html>

@@ -1,0 +1,38 @@
+<div id="refer_proj" class="col-md-12 col-sm-12 col-xs-12" style="border:0px solid #e5e5e5;">
+
+  <div role="tabpanel" class="tab-pane" id="tab_content3" aria-labelledby="profile-tab">
+    <h3 class="prod_title">연계 프로젝트</h3>
+
+    <div class="col-md-6 col-sm-12">
+      <div style="text-align: center;">
+        <div data-toggle="tooltip" data-placement="top" title="내가 참고한 프로젝트">
+          <% for(var i in refer) { 
+            if(refer[i].reference != proj_info[0].project_number) { %>
+            <button type="button" class="reference btn btn-sunny text-uppercase btn-lg" onclick="location.href='/proj_info?num=<%= refer[i].reference %>'">
+              <%= refer[i].reference %>
+            </button>
+            <% }} %>
+        </div>
+        <br/>
+        <div data-toggle="tooltip" data-placement="top" title="현재 프로젝트">
+          <button id="nowp" type="button" class="btn btn-sky text-uppercase btn-lg">
+            <%= proj_info[0].project_number %>
+          </button>
+        </div>
+        <br/>
+        <div data-toggle="tooltip" data-placement="bottom" title="나를 참고한 프로젝트">
+          <% for(var i in refer) { 
+            if(refer[i].referenced != proj_info[0].project_number) { %>
+            <button type="button" class="reference btn btn-fresh text-uppercase btn-lg" onclick="location.href='/proj_info?num=<%= refer[i].referenced %>'">
+              <%= refer[i].referenced %>
+            </button>
+            <% }} %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br />
+
+
+</div>

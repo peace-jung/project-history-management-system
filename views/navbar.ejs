@@ -1,0 +1,23 @@
+<!-- sidebar -->
+<div id="sidebar" class="col-md-3 col-sm-3 left_col">
+  <% include ./sidebar.ejs %>
+</div>
+<!-- /sidebar -->
+
+<div class="bs-example bs-navmenu-offcanvas-example">
+  <div class="myNavmenuCanvas">
+
+    <!-- 모바일 사이드바 -->
+    <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+      <% include ./sidebar.ejs %>
+    </nav>
+    <!-- 모바일 navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+  </div>
+</div>

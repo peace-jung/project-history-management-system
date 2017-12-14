@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <% include ./link.ejs %>
+    <% include ./script.ejs %>
+
+      <script src="./js/proj_info.js"></script>
+
+      <!-- 만든거 -->
+      <style>
+      </style>
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+
+      <!-- navbar + 사이드바 -->
+      <% include ./navbar.ejs %>
+        <!-- /navbar + 사이드바 -->
+
+        <div class="push"></div>
+
+        <!-- Content -->
+        <div class="right_col" role="main">
+
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>학생 프로필</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>학생 활동 내역</h2>
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                      <div class="profile_img">
+                        <div id="crop-avatar">
+                          <!-- 학생 정보 -->
+                          <img class="img-responsive avatar-view" src="images/undefined.jpg" alt="Avatar" title="Change the avatar">
+                        </div>
+                      </div>
+                      <h3>
+                        <%= project[0].name %>
+                      </h3>
+
+                      <ul class="list-unstyled user_data">
+                        <li>
+                          <i class="fa fa-map-marker user-profile-icon"></i> 동서대학교
+                        </li>
+
+                        <li>
+                          <i class="fa fa-briefcase user-profile-icon"></i>
+                          <%= project[0].major %>
+                        </li>
+
+                        <li class="m-top-xs">
+                          <i class="fa fa-external-link user-profile-icon"></i>
+                          <%= project[0].grade %>학년
+                        </li>
+                      </ul>
+
+                      <br />
+                    </div>
+
+                    <!-- 활동 정보 -->
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+
+                      <div class="profile_title">
+                        <div class="col-md-6">
+                          <h2>활동 내역</h2>
+                        </div>
+                      </div>
+
+                      <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs col-xs-12" role="tablist">
+                          <li role="presentation" class="active">
+                            <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">상세 내용</a>
+                          </li>
+                          <li role="presentation" class="">
+                            <a href="#tab_content2" id="profile-tab" data-toggle="tab" aria-expanded="false">성과 내역</a>
+                          </li>
+                        </ul>
+
+                        <div id="myTabContent" class="tab-content">
+                          <!-- 참여 프로젝트 -->
+
+                          <div role="tabpanel" class="tab-pane active in" id="proj_context" aria-labelledby="home-tab">
+
+                            <table class="data table table-striped no-margin table-hover">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Project Title</th>
+                                  <th>Type</th>
+                                  <th class="hidden-phone">Date</th>
+                                  <th>별점</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% if(project.length == 0) { %>
+                                  <tr>
+                                    <td colspan="5" style="text-align:center;">프로젝트가 없습니다.</td>
+                                  </tr>
+                                  <% } %>
+                                    <% for(var i in project) { %>
+                                      <tr onClick="location.href='/proj_info?num=<%= project[i].project_number %>'" style="cursor:pointer;">
+                                        <td>
+                                          <%= parseInt(i)+1 %>
+                                        </td>
+                                        <td>
+                                          <%= project[i].title %>
+                                        </td>
+                                        <td>
+                                          <% if(project[i].project_type == 'P01') { %>
+                                            아이디어 도출
+                                            <% } else if(project[i].project_type == 'P02') { %>
+                                              개발 미완료
+                                              <% } else { %>
+                                                개발 완료
+                                                <% } %>
+                                        </td>
+                                        <td>
+                                          <%= project[i].date.getFullYear() %>/
+                                                  <%= project[i].date.getMonth()+1 %>/
+                                                    <%= project[i].date.getDate() %>
+                                        </td>
+                                        <td class="vertical-align-mid">
+                                          ★★★★☆
+                                        </td>
+                                      </tr>
+                                      <% } %>
+                              </tbody>
+                            </table>
+                            <!-- end user projects -->
+
+                          </div>
+                          <!-- 참여 프로젝트 끝 -->
+
+                          <!-- 성과 내역 -->
+                          <div role="tabpanel" class="tab-pane" id="proj_wins" aria-labelledby="profile-tab">
+                            <table class="data table table-striped no-margin table-hover">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Project Name</th>
+                                  <th>Type</th>
+                                  <th class="hidden-phone">Date</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% if(wins.length == 0) { %>
+                                  <tr>
+                                    <td colspan="5" style="text-align:center;">성과가 없습니다.</td>
+                                  </tr>
+                                  <% } %>
+                                    <% for(var i in wins) { %>
+                                      <tr style="cursor:pointer;">
+                                        <td>
+                                          <%= parseInt(i)+1 %>
+                                        </td>
+                                        <td>
+                                          <%= wins[i].title %>
+                                        </td>
+                                        <td>
+                                          <% if(wins[i].wins_type == 'T01') { %>
+                                            공모전 수상
+                                            <% } else if(wins[i].wins_type == 'T02') { %>
+                                              논문 게재
+                                              <% } else { %>
+                                                특허 등록
+                                                <% } %>
+                                        </td>
+                                        <td>
+                                          <%= wins[i].date1.getFullYear() %>/
+                                            <%= wins[i].date1.getMonth()+1 %>/
+                                              <%= wins[i].date1.getDate() %>
+                                        </td>
+                                      </tr>
+                                      <% } %>
+                              </tbody>
+                            </table>
+
+                          </div>
+                          <br />
+
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 활동 정보 끝 -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+    </div>
+    <!-- /Content -->
+  </div>
+
+  <% include ./footer.ejs %>
+    </div>
+</body>
+
+</html>
