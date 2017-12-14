@@ -1,7 +1,7 @@
-1. node.js ¼³Ä¡°¡ µÇ¾îÀÖ¾î¾ß ÇÔ.
-2. mysql ÀÌ ¼³Ä¡µÇ¾î ÀÖ¾î¾ß ÇÔ.
-3. ¼­¹ö ½ÃÀÛÀº npm start
+1. node.js ì„¤ì¹˜ê°€ ë˜ì–´ìˆì–´ì•¼ í•¨.
+2. mysql ì´ ì„¤ì¹˜ë˜ì–´ ìˆì–´ì•¼ í•¨.
+3. ì„œë²„ ì‹œì‘ì€ npm start
 
-![ÀüÃ¼ ÇÁ·ÎÁ§Æ® È­¸é](./images/mainpage.png)
-![ERD-ÇÑ±Û](./images/erd12-5.png)
-![ERD-¿µ¹®](./images/erd12-5e.png)
+![ì „ì²´ í”„ë¡œì íŠ¸ í™”ë©´](./images/mainpage.png)
+![ERD-í•œê¸€](./images/erd12-5.png)
+![ERD-ì˜ë¬¸](./images/erd12-5e.png)
