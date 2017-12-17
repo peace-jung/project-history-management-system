@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <% include ./link.ejs %>
+
+    <!-- 만든거 -->
+    <style>
+      .x_content p,
+      .x_content label,
+      .x_content h5,
+      tr,
+      td {
+        color: rgb(102, 102, 102);
+      }
+    </style>
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+
+      <!-- navbar + 사이드바 -->
+      <% include ./navbar.ejs %>
+        <!-- /navbar + 사이드바 -->
+
+        <div class="push"></div>
+
+        <!-- Content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>연계 프로젝트 등록</h3>
+              </div>
+
+              <div class="title_right">
+                <% include ./search_bar.ejs %>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+
+
+            <div class="row">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+
+                  <div class="x_content">
+
+                    <p>프로젝트 정보를 입력하세요.</p>
+                    <div id="wizard" class="form_wizard wizard_horizontal">
+                      <div id="step-1">
+                        <div class="form-horizontal form-label-left">
+                          <!--                           <form id="sendData" method="post" action="/addLinks">
+ -->
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">프로젝트 유형
+                              <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <h5 id="type" name="type">아이디어 도출</h5>
+                              <select id="project_type">
+                                <option value="P01">아이디어 도출</option>
+                                <option value="P03">개발 완료</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">프로젝트 제목
+                              <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="title" name="title" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="update">주제어(키워드)
+                              <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="topic" name="topic" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="update">등록 날짜
+                              <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="date" id="update" name="update" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" style="color: #35B62C;">참고한 프로젝트
+                              <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div class="checkbox">
+                                <label>
+                                  <input id="delCart" type="checkbox"> 등록 후 관심 목록에서 삭제
+                                </label>
+                              </div>
+
+                              <div>
+                                <table id="example" class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>프로젝트 번호</th>
+                                      <th>프로젝트 제목</th>
+                                      <th>참고 내용</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody class="project-group">
+                                    <% for(var i in list) { %>
+                                      <tr class="item1">
+                                        <td class="col-md-2">
+                                          <%= JSON.parse(list[i]).number %>
+                                        </td>
+                                        <td class="col-md-4">
+                                          <%= JSON.parse(list[i]).title %>
+                                        </td>
+                                        <td>
+                                          <input type="text" name="" id="ref<%=i%>" class="form-control" required="required" pattern="" title="참고한 내용">
+                                        </td>
+                                      </tr>
+                                      <% } %>
+                                  </tbody>
+                                </table>
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">팀 구성
+                              <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div>
+
+                                <table id="example" class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>참여자</th>
+                                      <th>이름</th>
+                                      <th>역할</th>
+                                      <th>팀장</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody class="radio-group">
+                                    <tr class="item1">
+                                      <td class="col-md-4">
+                                        <input class="form-control input-sm getStd" type="text" name="id" id="id" placeholder="학번 입력 후 엔터">
+                                      </td>
+                                      <td>
+                                      </td>
+                                      <td>
+                                      </td>
+                                      <td>
+                                        <button class="delBtn">삭제</button>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">내용
+                              <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <textarea id="message" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20"
+                                data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                                data-parsley-validation-threshold="10"></textarea> </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">참고한 자료
+                              <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div>
+
+                                <table id="example1" class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>참고한 자료 URL</th>
+                                      <th>참고 문헌</th>
+                                      <th>참고 내용</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody class="refer-group">
+                                    <tr>
+                                      <td class="col-md-2">
+                                        <button class="referAddBtn">추가</button>
+                                      </td>
+                                      <td class="col-md-2">
+                                        <button class="referDelBtn">삭제</button>
+                                      </td>
+                                      <td>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="update">대표 이미지
+                              <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="file" id="imageURL" name="imageURL">
+                              <br/>
+                              <div id="holder"></div>
+                            </div>
+                          </div>
+
+                          <script>
+                            var imageURL = document.getElementById('imageURL'),
+                              holder = document.getElementById('holder');
+
+                            imageURL.onchange = function (e) {
+                              e.preventDefault();
+
+                              var file = imageURL.files[0],
+                                reader = new FileReader();
+                              reader.onload = function (event) {
+                                var img = new Image();
+                                img.src = event.target.result;
+                                holder.innerHTML = '';
+                                holder.appendChild(img);
+                              };
+                              reader.readAsDataURL(file);
+
+                              return false;
+                            };
+                          </script>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="update">산출물 파일첨부
+                              <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="file" id="resultURL" name="resultURL">
+                            </div>
+                          </div>
+                          <!-- </form> -->
+
+
+                          <div class="container">
+                            <div class="actionBar">
+                              <button id="submit" type="button" class="buttonNext btn btn-success">등록하기</button>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /Content -->
+    </div>
+
+    <% include ./footer.ejs %>
+  </div>
+</body>
+<% include ./script.ejs %>
+  <script src="./js/addLinks.js"></script>
+  <script src="./js/searchbar.js"></script>
+
+
+</html>

@@ -1,0 +1,118 @@
+<div class="left_col scroll-view" data-spy="affix" data-offset-top="0">
+  <!-- 좌상단 아이콘 -->
+  <div class="navbar nav_title" style="border: 0;">
+    <a href="/" class="site_title">
+      <i class="fa fa-sellsy" style="border:none;"></i>
+      <span>DSU - PHMS</span>
+    </a>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <!-- 사용자 프로필 -->
+  <div class="profile clearfix">
+    <%if(user.id == "undefined") {%>
+      <form action="/login" method="POST" role="form" class=" col-sm-10">
+        <div class="form-group-sm">
+          <label for="email">ID:</label>
+          <input id="id" type="text" class="form-control input-sm" name="id" placeholder="ID" required autofocus="autofocus" />
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input id="password" type="password" class="form-control input-sm" name="password" placeholder="Password" required/>
+        </div>
+        <button type="submit" class="btn btn-primary btn-md col-sm-6">Login</button>
+      </form>
+      <%} else {%>
+        <div class="profile_pic">
+          <a href="/edit_profile?id=<%=user.id%>">
+            <img src="images/undefined.jpg" class="img-circle profile_img">
+          </a>
+        </div>
+        <div class="profile_info">
+          <span>
+            Welcome,
+          </span>
+          <h2>
+            <%=user.major%>
+          </h2>
+          <h2>
+            <%if(user.user_type == 'S') {%>
+              <%=user.id%>
+                <%} else if(user.user_type == 'A') {%>
+                  Admin
+                  <%} else { %>
+                    Professor
+                    <%}%>
+                      <%=" "+user.name%>
+          </h2>
+          <button type="button" class="btn btn-xs btn-primary" onclick="location.href='/edit_profile?id=<%=user.id%>'" style="margin-top:5px;">개인정보수정</button>
+        </div>
+        <%}%>
+  </div>
+
+  <br />
+
+  <!-- 사이드바 -->
+  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+    <div class="menu_section">
+      <h3>Menu</h3>
+      <ul class="nav side-menu navmenu-nav">
+        <li>
+          <a href="/">
+            <i class="fa fa-home"></i>대시보드</a>
+        </li>
+        <li>
+          <a href="/projects">
+            <i class="fa fa-table"></i>전체 프로젝트
+          </a>
+        </li>
+        <%if(user.user_type != 'undefined') {%>
+        <li>
+          <a href="/cart">
+            <i class="fa fa-archive"></i>관심 프로젝트
+          </a>
+        </li>
+        <% } %>
+        <li>
+          <%if(user.user_type == 'S') {%>
+            <a href="/projects?id=<%= user.id %>">
+              <i class="fa fa-desktop"></i>내 프로젝트
+            </a>
+            <%} else if(user.user_type == 'A') {%>
+              <a href="/activity">
+                <i class="fa fa-desktop"></i>사용자 등록
+              </a>
+        </li>
+        <li>
+          <a href="/userlist">
+            <i class="fa fa-group"></i>사용자 리스트
+          </a>
+          <%} else if(user.user_type == 'P') { %>
+            <a href="/activity">
+              <i class="fa fa-desktop"></i>지도학생
+            </a>
+            <%}%>
+        </li>
+        <li>
+          <a href="/wins">
+            <i class="fa fa-trophy"></i>성과 프로젝트
+          </a>
+        </li>
+        <li>
+          <a href="/vips">
+            <i class="fa fa-smile-o"></i>우수 학생
+          </a>
+        </li>
+        <%if(user.id != "undefined") {%>
+          <li>
+            <a href="/logout">
+              <i class="fa fa-sign-out"></i>로그아웃
+            </a>
+          </li>
+          <%}%>
+      </ul>
+    </div>
+  </div>
+  <!-- /사이드바 -->
+</div>

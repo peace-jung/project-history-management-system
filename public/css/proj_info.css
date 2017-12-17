@@ -1,0 +1,99 @@
+        .x_content p,
+        .x_content label,
+        .x_content h5,
+        tr,
+        td,
+        button {
+          color: rgb(102, 102, 102);
+        }
+
+        .center {
+          margin-top: 0px;
+        }
+
+        .modal-header {
+          padding-bottom: 5px;
+        }
+
+        .modal-footer {
+          padding: 0;
+        }
+
+        .modal-footer .btn-group button {
+          height: 40px;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          border: none;
+          border-right: 1px solid #ddd;
+        }
+
+        .modal-footer .btn-group:last-child>button {
+          border-right: 0;
+        }
+
+        .table-filter .media .title {
+          color: #2BBCDE;
+          font-size: 14px;
+          font-weight: bold;
+          line-height: normal;
+          margin: 0;
+        }
+
+        .table-filter .media .title span {
+          font-size: .8em;
+          margin-right: 20px;
+        }
+
+        .btn-sunny {
+          color: #fff;
+          background-color: #f4ad49;
+          border-bottom: 2px solid #c38a3a;
+        }
+
+        .btn-sunny:hover,
+        .btn-sky.active:focus,
+        .btn-sunny:focus,
+        .open>.dropdown-toggle.btn-sunny {
+          color: #fff;
+          background-color: #f5b75f;
+          border-bottom: 2px solid #c4924c;
+          outline: none;
+        }
+
+        .btn-sky {
+          color: #fff;
+          background-color: #0bacd3;
+          border-bottom: 2px solid #098aa9;
+        }
+
+        .btn-sky>a,
+        .btn-fresh>a,
+        .btn-sunny>a {
+          color: #fff;
+        }
+
+        .btn-sky:hover,
+        .btn-sky.active:focus,
+        .btn-sky:focus,
+        .open>.dropdown-toggle.btn-sky {
+          color: #fff;
+          background-color: #29b6d8;
+          border-bottom: 2px solid #2192ad;
+          outline: none;
+        }
+
+        .btn-fresh {
+          color: #fff;
+          background-color: #51bf87;
+          border-bottom: 2px solid #41996c;
+        }
+
+        .btn-fresh:hover,
+        .btn-sky.active:focus,
+        .btn-fresh:focus,
+        .open>.dropdown-toggle.btn-fresh {
+          color: #fff;
+          background-color: #66c796;
+          border-bottom: 2px solid #529f78;
+          outline: none;
+        }

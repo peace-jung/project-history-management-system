@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <% include ./link.ejs %>
+    <!-- 만든거 -->
+    <style>
+      .x_content p,
+      .x_content label,
+      .x_content h5,
+      tr,
+      td {
+        color: rgb(102, 102, 102);
+      }
+    </style>
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+
+      <!-- navbar + 사이드바 -->
+      <% include ./navbar.ejs %>
+        <!-- /navbar + 사이드바 -->
+
+        <div class="push"></div>
+
+        <!-- Content -->
+        <div class="right_col" role="main">
+
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>사용자 등록: 관리자 전용</h3>
+              </div>
+
+              <!-- <div class="title_right">
+                <form action="/search_proj" method="GET">
+                  <div class="input-group">
+                    <input name="title" type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                  </div>
+                </form>
+              </div> -->
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <!-- <div class="x_title">
+                    <h3>사용자 등록</h3>
+
+                    <div class="clearfix"></div>
+                  </div> -->
+                  <div class="x_content">
+
+                    <div id="step-1">
+                      <form name="frm" class="form-horizontal form-label-left" method="POST">
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id">사용자 ID
+                            <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="id" name="id" class="form-control col-md-7 col-xs-12" required/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">이름
+                            <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="name" name="name" class="form-control col-md-7 col-xs-12" required/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">비밀번호
+                            <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="password" id="password" name="password" class="form-control col-md-7 col-xs-12" required/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="major">전공
+                            <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="major" name="major" class="form-control col-md-7 col-xs-12" value="N" required/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="grade">학년
+                            <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="grade" name="grade" class="form-control col-md-7 col-xs-12" value="N" required/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">주소
+                            <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="address" name="address" class="form-control col-md-7 col-xs-12" required/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="encrollment">재적 현황
+                            <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="encrollment" name="encrollment" class="form-control col-md-7 col-xs-12" value="N" required/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">사용자 구분
+                            <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label class="radio-inline">
+                              <input type="radio" name="user_type" value="A">관리자</label>
+                            <label class="radio-inline">
+                              <input type="radio" name="user_type" value="S">학생</label>
+                            <label class="radio-inline">
+                              <input type="radio" name="user_type" value="P">교수</label>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="professor">지도 교수
+                            <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="professor" name="professor" class="form-control col-md-7 col-xs-12" value="N" required/>
+                          </div>
+                        </div>
+
+
+                        <div class="container">
+                          <div class="actionBar">
+                            <button id="submit" type="button" onclick="submit_form()" class="buttonNext btn btn-success">등록하기</button>
+                          </div>
+                        </div>
+
+                      </form>
+
+                    </div>
+
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    <!-- /Content -->
+  </div>
+
+  <% include ./footer.ejs %>
+    </div>
+</body>
+<% include ./script.ejs %>
+  <script src="./js/addUser.js"></script>
+
+</html>

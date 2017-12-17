@@ -1,0 +1,30 @@
+<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="input-group">
+        <div class="input-group-btn bs-dropdown-to-select-group">
+          <button type="button" class="btn btn-default dropdown-toggle as-is bs-dropdown-to-select" data-toggle="dropdown" style="border-radius: 10px;">
+            <span data-bind="bs-drp-sel-label">Select</span>
+            <input id="selected_value" type="hidden" name="selected_value" data-bind="bs-drp-sel-value" value="1">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu" role="menu" style="">
+            <li data-value="1">
+              <a href="#">통합검색</a>
+            </li>
+            <li data-value="2">
+              <a href="#">제목+내용</a>
+            </li>
+            <li data-value="3">
+              <a href="#">주제어+내용</a>
+            </li>
+            <li data-value="4">
+              <a href="#">참여자</a>
+            </li>
+          </ul>
+        </div>
+        <input id="search" type="text" value="" class="form-control" name="title" style="border-radius: 10px;">
+      </div>
+    </div>
+</div>
+

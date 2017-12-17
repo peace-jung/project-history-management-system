@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <% include ./link.ejs %>
+
+</head>
+
+<body class="login">
+  <div>
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+        <section class="login_content">
+          <form method="POST" action="/login">
+            <h1>Login Form</h1>
+            <div>
+              <input name="id" type="text" class="form-control" placeholder="ID" required autofocus="autofocus"/>
+            </div>
+            <div>
+              <input name="password" type="password" class="form-control" placeholder="Password" required/>
+            </div>
+            <div>
+              <button class="btn btn-default" type="submit">Log in</a>
+            </div>
+          </form>
+        </section>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>

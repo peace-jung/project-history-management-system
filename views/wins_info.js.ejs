@@ -1,0 +1,60 @@
+<script>
+  $(document).ready(function () {
+    $('#wins_table tbody').on('click', 'tr', function () {
+      var number = isNaN($(this).prevAll().length) ? 0 : $(this).prevAll().length;
+      `<% for (var i in wins) { %>`
+      if (`<%= i %>` == number) {
+        $.ajax({
+          url: '/wins_info/<%= wins[i].wins_number %>',
+          type: 'GET',
+          success: function (req) {
+            if ("<%= wins[i].wins_type %>" == 'T01') {
+              $('#wins_type').text("공모전 성과");
+              $('#wins_info_1').html(`<label>공모전 제목<h4>${req[0].title}</h4></label>`);
+              $('#wins_info_2').html(`<label>성과 일시<h4>${req[0].date.split('T')[0]}</h4></label>`);
+              $('#wins_info_4').html(`<label>수상이력<h4>${req[0].award}</h4></label>`);
+              $('#wins_info_5').html(`<label>주최기관<h4>${req[0].host}</h4></label>`);
+              $('#wins_info_6').html(`<label>공모전 내용<h4>${req[0].contest_context}</h4></label>`);
+            } else if ("<%= wins[i].wins_type %>" == 'T02') {
+              $('#wins_type').text("논문 성과");
+              $('#wins_info_1').html(`<label>논문 제목<h4>${req[0].title}</h4></label>`);
+              $('#wins_info_2').html(`<label>성과 일시<h4>${req[0].date.split('T')[0]}</h4></label>`);
+              $('#wins_info_3').html(`<label>논문 종류<h4>${req[0].paper_type}</h4></label>`);
+              $('#wins_info_4').html(`<label>학회<h4>${req[0].academy}</h4></label>`);
+              $('#wins_info_5').html(`<label>제출처<h4>${req[0].submission}</h4></label>`);
+              $('#wins_info_6').html(`<label>논문 요약문<h4>${req[0].summary}</h4></label>`);
+              $('#wins_info_7 table thead tr th:eq(0)').html('저자 ID');
+              $('#wins_info_7 table thead tr th:eq(1)').html('저자 이름');
+              var author = '';
+              for (var i in req) {
+                author += `<tr><td>${req[i].author_ID}</td>
+                  <td>${req[i].author_name}</td></tr>`;
+              }
+              $('.wins-person').html(author);
+            } else {
+              $('#wins_type').text("특허 성과");
+              $('#wins_info_1').html(`<label>특허 제목<h4>${req[0].title}</h4></label>`);
+              $('#wins_info_2').html(`<label>출원번호<h4>${req[0].patent_number}</h4></label>`);
+              $('#wins_info_3').html(`<label>출원일<h4>${req[0].date.split('T')[0]}</h4></label>`);
+              $('#wins_info_4').html(`<label>등록번호<h4>${req[0].regist_number}</h4></label>`);
+              $('#wins_info_5').html(`<label>등록일<h4>${req[0].regist_date}</h4></label>`);
+              $('#wins_info_6').html(`<label>특허 내용<h4>${req[0].patent_context}</h4></label>`);
+              $('#wins_info_7 table thead tr th:eq(0)').html('출원인 ID');
+              $('#wins_info_7 table thead tr th:eq(1)').html('출원인 이름');
+              var inventor = '';
+              for (var i in req) {
+                inventor += `<tr><td>${req[i].inventor_ID}</td>
+                  <td>${req[i].inventor_name}</td></tr>`;
+              }
+              $('.wins-person').html(inventor);
+            }
+          },
+          error: function (err) {
+            console.log(err);
+          }
+        });
+      }
+      `<% } %>`
+    });
+  });
+</script>

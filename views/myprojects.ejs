@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <% include ./link.ejs %>
+
+    <!-- 만든거 -->
+    <style>
+      .x_content p,
+      .x_content label,
+      .x_content h5,
+      tr,
+      td,
+      button {
+        color: rgb(102, 102, 102);
+      }
+    </style>
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+
+      <!-- navbar + 사이드바 -->
+      <% include ./navbar.ejs %>
+        <!-- /navbar + 사이드바 -->
+
+        <div class="push"></div>
+
+        <!-- Content -->
+        <div class="right_col" role="main">
+
+          <div class="">
+
+            <div class="page-title">
+              <div class="title_left">
+                <h3>전체 프로젝트</h3>
+              </div>
+
+              <div class="title_right">
+
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <form action="/search_proj" method="GET">
+                    <div class="input-group">
+                      <input name="title" type="text" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-4 form-group pull-right top_search">
+                  <a href="/addProject" class="btn btn-primary" role="button">등록하기</a>
+                </div>
+
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <h3>프로젝트 목록</h3>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+                      <% for(var i in list) { %>
+                        <div class="col-md-55">
+                          <div class="thumbnail">
+                            <div class="image view view-first">
+                              <% if(list[i].project_type == "P01") { %>
+                                <img style="height: 100%; display: block; margin: auto auto" src="./images/idea.png" alt="image" />
+                                <% } else if(list[i].project_type == "P02") { %>
+                                  <img style="height: 100%; display: block; margin: auto auto" src="./images/notcomp.png" alt="image" />
+                                  <% } else { %>
+                                    <img style="height: 100%; display: block; margin: auto auto" src="./images/comp.png" alt="image" />
+                                    <% } %>
+                                      <div class="mask no-caption">
+                                        <div class="tools tools-bottom">
+                                          <a href="#">
+                                            <i class="fa fa-link"></i>
+                                          </a>
+                                          <a href="#">
+                                            <i class="fa fa-pencil"></i>
+                                          </a>
+                                          <a href="#">
+                                            <i class="fa fa-times"></i>
+                                          </a>
+                                        </div>
+                                      </div>
+                            </div>
+                            <div class="caption">
+                              <a href="/proj_info?num=<%= list[i].project_number %>">
+                                <p>
+                                  <strong>
+                                    <%= list[i].title %>
+                                  </strong>
+                                </p>
+                              </a>
+                              <p>
+                                <%= list[i].date.getFullYear() %>/
+                                  <%= list[i].date.getMonth()+1 %>/
+                                    <%= list[i].date.getDate() %>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <%}%>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /Content -->
+    </div>
+
+    <% include ./footer.ejs %>
+  </div>
+</body>
+<% include ./script.ejs %>
+
+</html>

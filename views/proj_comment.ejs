@@ -1,0 +1,64 @@
+<br />
+
+<h3 class="prod_title">평가</h3>
+
+<div class="col-md-6 col-sm-12">
+
+
+  <% if(user.id != "undefined") { %>
+    <form>
+      <div class="row">
+        <div class="col-md-10 col-sm-12">
+          <div class="contacts">
+            <div class="form-group multiple-form-group input-group">
+              <div class="input-group-btn input-group-select">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  <span class="concept">★★★★★</span>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a href="#one">★</a>
+                  </li>
+                  <li>
+                    <a href="#two">★★</a>
+                  </li>
+                  <li>
+                    <a href="#three">★★★</a>
+                  </li>
+                  <li>
+                    <a href="#four">★★★★</a>
+                  </li>
+                  <li>
+                    <a href="#five">★★★★★</a>
+                  </li>
+                </ul>
+                <input type="hidden" class="input-group-select-val" name="contactstype" value="one">
+              </div>
+              <input type="text" id="contactsvalue" class="form-control">
+              <span class="input-group-btn">
+                <button type="button" id="submit_btn" onclick="sendData('<%=user.id%>');" class="btn btn-success">등록</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <br/>
+    <% } %>
+      <div class="comments-list">
+        <% for (var i in comment) { %>
+          <div class="media">
+            <a class="media-left" href="#">
+              <img src="images/undefined.jpg" height="55" width="55">
+            </a>
+            <div class="media-body">
+              <label class="media-heading user_name">
+                <%= comment[i].name%>
+                <h4><%= comment[i].context%></h4>
+              </label>
+            </div>
+          </div>
+          <% } %>
+      </div>
+</div>

@@ -1,0 +1,23 @@
+<script>
+  $("#CartBtn").click(function () {
+    var project_number = '<%=proj_info[0].project_number%>';
+    $.ajax({
+      url: '/addCart',
+      data: { project_number: project_number },
+      dataType: 'json',
+      type: 'POST',
+      success: function (res) {
+        if (res.result == "T") {
+          alert('관심 목록에 추가되었습니다!');
+          location.reload();
+        } else {
+          alert('관심 목록에서 삭제하였습니다!');
+          location.reload();
+        }
+      },
+      err: function (err) {
+        console.log(err);
+      }
+    });
+  });
+</script>
