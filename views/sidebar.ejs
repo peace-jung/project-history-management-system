@@ -3,7 +3,11 @@
   <div class="navbar nav_title" style="border: 0;">
     <a href="/" class="site_title">
       <i class="fa fa-sellsy" style="border:none;"></i>
+<<<<<<< HEAD
       <span>DSU - PHMS</span>
+=======
+      <span>DSU - PMS</span>
+>>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
     </a>
   </div>
 
@@ -25,6 +29,7 @@
       </form>
       <%} else {%>
         <div class="profile_pic">
+<<<<<<< HEAD
           <a href="/edit_profile?id=<%=user.id%>">
             <img src="images/undefined.jpg" class="img-circle profile_img">
           </a>
@@ -33,6 +38,13 @@
           <span>
             Welcome,
           </span>
+=======
+          <img src="images/undefined.jpg" class="img-circle profile_img" />
+        </div>
+        <div class="profile_info">
+          <span>
+            Welcome,</span>
+>>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
           <h2>
             <%=user.major%>
           </h2>
@@ -46,7 +58,10 @@
                     <%}%>
                       <%=" "+user.name%>
           </h2>
+<<<<<<< HEAD
           <button type="button" class="btn btn-xs btn-primary" onclick="location.href='/edit_profile?id=<%=user.id%>'" style="margin-top:5px;">개인정보수정</button>
+=======
+>>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
         </div>
         <%}%>
   </div>
@@ -67,6 +82,7 @@
             <i class="fa fa-table"></i>전체 프로젝트
           </a>
         </li>
+<<<<<<< HEAD
         <%if(user.user_type != 'undefined') {%>
         <li>
           <a href="/cart">
@@ -74,6 +90,8 @@
           </a>
         </li>
         <% } %>
+=======
+>>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
         <li>
           <%if(user.user_type == 'S') {%>
             <a href="/projects?id=<%= user.id %>">
@@ -83,6 +101,7 @@
               <a href="/activity">
                 <i class="fa fa-desktop"></i>사용자 등록
               </a>
+<<<<<<< HEAD
         </li>
         <li>
           <a href="/userlist">
@@ -97,6 +116,17 @@
         <li>
           <a href="/wins">
             <i class="fa fa-trophy"></i>성과 프로젝트
+=======
+              <%} else if(user.user_type == 'P') { %>
+                <a href="/activity">
+                  <i class="fa fa-desktop"></i>지도학생
+                </a>
+                <%}%>
+        </li>
+        <li>
+          <a href="/wins">
+            <i class="fa fa-trophy"></i>성과
+>>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
           </a>
         </li>
         <li>
@@ -104,6 +134,19 @@
             <i class="fa fa-smile-o"></i>우수 학생
           </a>
         </li>
+<<<<<<< HEAD
+=======
+        <!-- <li>
+          <a href="userinfo">
+            <i class="fa fa-user"></i>포트폴리오
+          </a>
+        </li> -->
+        <!-- <li>
+          <a href="/groups">
+            <i class="fa fa-users"></i>모집 그룹
+          </a>
+        </li> -->
+>>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
         <%if(user.id != "undefined") {%>
           <li>
             <a href="/logout">

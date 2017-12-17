@@ -41,11 +41,31 @@
           <div class="">
 
             <div class="page-title">
+<<<<<<< HEAD
               <!-- <div class="title_left">
                 <h3>우수 학생</h3>
               </div>
 
               <div class="clearfix"></div> -->
+=======
+              <div class="title_left">
+                <h3>우수 학생</h3>
+              </div>
+
+              <div class="title_right">
+
+                <% include ./search_bar.ejs %>
+
+                  <div class="title_right">
+                    <div class="form-group pull-right top_search">
+                      <a href="/addLinks" class="btn btn-success" role="button" style="background: #5CB85C; color: white;">프로젝트 등록하기</a>
+                    </div>
+                  </div>
+
+              </div>
+
+              <div class="clearfix"></div>
+>>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
 
               <div class="row">
 
@@ -68,10 +88,17 @@
                       <table id="datatable-keytable" class="table jambo_table table-striped table-bordered table-hover bulk_action">
                         <thead>
                           <tr style="background: #405467; color: #eee;">
+<<<<<<< HEAD
                             <th width="25%">학번</th>
                             <th width="25%">이름</th>
                             <th width="25%">등록한 프로젝트 수</th>
                             <th width="25%">성과 수</th>
+=======
+                            <th width="20%">학번</th>
+                            <th width="25%">이름</th>
+                            <th width="15%">등록한 프로젝트 수</th>
+                            <th width="15%">성과 수</th>
+>>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
                           </tr>
                         </thead>
 
@@ -82,10 +109,17 @@
                                 <!-- <input type="checkbox" class="flat" name="table_records"> -->
                                 <%= list[i].id %>
                               </td>
+<<<<<<< HEAD
                               <td onClick="location.href='/profile?id=<%= list[i].id %>'" style="cursor:pointer;">
                                 <%= list[i].name %>
                               </td>
                               <td onClick="location.href='/profile?id=<%= list[i].id %>'" style="cursor:pointer;">
+=======
+                              <td onClick="location.href='/proj_info?num=<%= list[i].project_number %>'" style="cursor:pointer;">
+                                <%= list[i].name %>
+                              </td>
+                              <td onClick="location.href='/proj_info?num=<%= list[i].project_number %>'" style="cursor:pointer;">
+>>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
                                 10
                               </td>
                               <td>

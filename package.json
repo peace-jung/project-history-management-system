@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< HEAD
     "start": "node app.js"
+=======
+    "start": "node index.js"
+>>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +20,10 @@
     "express": "^4.16.2",
     "express-error-handler": "^1.1.0",
     "express-session": "^1.15.6",
+<<<<<<< HEAD
+=======
+    "fs": "0.0.1-security",
+>>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
     "mongodb": "^2.2.33",
     "mongoose": "^4.13.1",
     "multer": "^1.3.0",
