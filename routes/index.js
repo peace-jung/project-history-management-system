@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const mysql = require('mysql');
 const multer = require('multer');
- 
+
 const app = express();
 
 const login = require('./login');
@@ -19,7 +19,7 @@ let storage = multer.diskStorage({
     cb(null, 'public/images') // 파일 저장 위치
   },
   filename: function (req, file, cb) {
-    // 날짜 + 저장될 파일 이름
+    // 저장될 파일 이름 + 확장자
     cb(null, Date.now() + '-' + file.originalname)
   }
 })
@@ -498,7 +498,7 @@ router.post('/addLinks', upload.fields([{ name: 'imageURL' }, { name: 'resultURL
         }
       }
 
-      if (req.body.delCart == 'true') {
+      if(req.body.delCart == 'true') {
         sql = '';
         for (let i in refProjectArray) {
           sql += `delete from cart 
@@ -506,7 +506,7 @@ router.post('/addLinks', upload.fields([{ name: 'imageURL' }, { name: 'resultURL
                   and project_number = ${refProjectArray[i].project_number};`
         }
         connection.query(sql, function (err, result) {
-          if (err) console.log(err);
+          if(err) console.log(err);
           else console.log('카트 삭제 완료');
         });
       }

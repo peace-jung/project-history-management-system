@@ -42,11 +42,7 @@
 
             <div class="page-title">
               <div class="title_left">
-<<<<<<< HEAD
                 <h3>전체 성과 목록</h3>
-=======
-                <h3>전체 성과</h3>
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
               </div>
 
               <div class="title_right">
@@ -63,7 +59,6 @@
 
               <div class="clearfix"></div>
 
-<<<<<<< HEAD
               <% if(user.user_type == 'S') { %>
                 <div class="row">
                   <div class="col-md-12 col-sm-12 col-xs-12">
@@ -188,72 +183,6 @@
                       </div>
                     </div>
                   </div>
-=======
-              <div class="row">
-
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <div class="title_left">
-                        <h3>성과 목록</h3>
-                      </div>
-
-                      <div class="clearfix"></div>
-                    </div>
-
-                    <div class="x_content">
-
-                      <br/>
-                      <p><%= myWins[0] %></p>
-
-                      <table id="datatable-keytable" class="table jambo_table table-striped table-bordered table-hover bulk_action">
-                        <thead>
-                          <tr style="background: #405467; color: #eee;">
-                            <th width="15%">
-                              <!-- <input type="checkbox" id="check-all" class="flat"> -->Project Number
-                            </th>
-                            <th width="30%">Project Name</th>
-                            <th width="25%">성과 제목</th>
-                            <th width="15%">Type</th>
-                            <th width="15%">Date</th>
-                          </tr>
-                        </thead>
-
-                        <tbody id="tbody">
-                          <% for(var i in list) { %>
-                            <tr class="even pointer">
-                              <td class="a-center ">
-                                <!-- <input type="checkbox" class="flat" name="table_records"> -->
-                                <%= list[i].project_number %>
-                              </td>
-                              <td onClick="location.href='/proj_info?num=<%= list[i].project_number %>'" style="cursor:pointer;">
-                                <%= list[i].title %>
-                              </td>
-                              <td onClick="location.href='/proj_info?num=<%= list[i].project_number %>'" style="cursor:pointer;">
-                                <%= list[i].title %>
-                              </td>
-                              <% if(list[i].wins_type == "T01") { %>
-                                <td>공모전</td>
-                                <% } else if(list[i].wins_type == "T02") { %>
-                                  <td>논문</td>
-                                  <% } else { %>
-                                    <td>특허</td>
-                                    <% } %>
-                                      <td>
-                                        <%= list[i].date.getFullYear() %>/
-                                          <%= list[i].date.getMonth()+1 %>/
-                                            <%= list[i].date.getDate() %>
-                                      </td>
-                            </tr>
-                            <% } %>
-                        </tbody>
-                      </table>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
 
             </div>
           </div>

@@ -32,21 +32,13 @@ $(document).ready(function () {
       }
     });
 
-<<<<<<< HEAD
   /* $('.pdelBtn')
-=======
-  $('.pdelBtn')
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
     .on('click', function () {
       if (projects.length != 0) {
         $('tbody.project-group > tr').eq(projects.length).remove();
         projects.pop();
       }
-<<<<<<< HEAD
     }); */
-=======
-    });
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
 
   $('.getStd').keydown(function (e) {
     if (e.keyCode == 13) {
@@ -70,11 +62,7 @@ $(document).ready(function () {
     }
   });
 
-<<<<<<< HEAD
   /* $('.proj_id').keydown(function (e) {
-=======
-  $('.proj_id').keydown(function (e) {
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
     if (e.keyCode == 13) {
       var proj_id = $(this).val();
       $('.proj_id').val('');
@@ -94,11 +82,7 @@ $(document).ready(function () {
         }
       });
     }
-<<<<<<< HEAD
   }); */
-=======
-  });
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
 
   $('.referAddBtn').click(function () {
     var context = `<tr>
@@ -125,11 +109,7 @@ $(document).ready(function () {
       }
     });
 
-<<<<<<< HEAD
   /* function addProject(res) {
-=======
-  function addProject(res) {
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
     var project = { project_number: res.project_number, title: res.title, context: "null" };
     console.log(JSON.stringify(project));
 
@@ -160,11 +140,7 @@ $(document).ready(function () {
     } else {
       alert('해당 프로젝트가 없습니다.');
     }
-<<<<<<< HEAD
   } */
-=======
-  }
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
 
   function addMember(res) {
     var std = { id: res.id, name: res.name, grade: res.grade };
@@ -198,7 +174,6 @@ $(document).ready(function () {
     }
   }
 
-<<<<<<< HEAD
   function projectList() {
     $('.project-group tr').each(function () {
       var project = {
@@ -211,8 +186,6 @@ $(document).ready(function () {
     
   }
 
-=======
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
 
   function submitData() {
     console.log($('input:radio[name="optradio"]:checked').val());
@@ -249,10 +222,7 @@ $(document).ready(function () {
 
   $('#submit').click(function () {
     if (submitData()) {
-<<<<<<< HEAD
       projectList();
-=======
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
       refJSON = {};
       var refData = [];
       for (var i in projects) {
@@ -287,11 +257,7 @@ $(document).ready(function () {
       formData.append('leader_grade', JSON.parse(member[$('input:radio[name="optradio"]:checked').val()]).grade);
       formData.append('refProject', projects.length != 0 ? JSON.stringify(refData) : "null");
       formData.append('referURL', referArray.length != 0 ? JSON.stringify(referArray) : "null");
-<<<<<<< HEAD
       formData.append('delCart', $('#delCart').is(':checked'));
-=======
-
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
 
 
       $.ajax({

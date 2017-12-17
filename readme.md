@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 1. node.js 설치가 되어있어야 함.
 2. mysql 이 설치되어 있어야 함.
 3. 서버 시작은 npm start
@@ -7,7 +6,6 @@
 ## 작업환경
 ### 1. server - node.js
 ### 2. database - mysql
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
 
 ###
 ### project-list page
@@ -28,4 +26,3 @@
 ###
 ### physical ERD page
 ![erd12-5e](./demo-images/erd12-5e.PNG)
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c

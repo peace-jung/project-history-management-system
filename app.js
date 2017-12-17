@@ -8,7 +8,7 @@ const app = express();
 app.set('views');
 app.set('view engine', 'ejs');
 app.set('port', 5301);
- 
+
 app.use(express.static('public'));
 app.use(express.static('bootstrap'));
 app.use(bodyParser.urlencoded({ extended: false }));
