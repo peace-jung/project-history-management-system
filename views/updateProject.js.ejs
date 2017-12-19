@@ -1,0 +1,340 @@
+<script>
+  $(document).ready(function () {
+    if ('<%=proj_info[0].project_type%>' == 'P01')
+      $('#type').text('아이디어 도출');
+    else
+      $('#type').text('개발 완료');
+    $('#title').val('<%=proj_info[0].title%>');
+    $('#topic').val('<%=proj_info[0].topic%>');
+    $('#message').val('<%=proj_info[0].description%>');
+    var day = ('<%=proj_info[0].date.getDate()%>');
+    var month = ('<%=proj_info[0].date.getMonth() + 1%>');
+    var today = ('<%=proj_info[0].date.getFullYear()%>') + "-" + (month) + "-" + (day);
+    $('#update').val(today);
+
+
+    var member = new Array();
+    var projects = new Array();
+    var referData = new Array();
+
+    /* 참고한 프로젝트 */
+    "<% for (var i in refer) { %>"
+    var project = {
+      project_number: '<%=refer[i].reference %>',
+      title: '<%=refer[i].project_title %>',
+      context: '<%=refer[i].refer_context %>'
+    };
+    projects.push(JSON.stringify(project));
+
+    var context = `<tr>
+            <td>`+ project.project_number + `</td>
+            <td>`+ project.title + `</td><td>
+            <input type="text" name="" id="ref`
+      + (projects.length - 1) +
+      `" class="form-control input-sm" value="${project.context}">
+            </td></tr>`;
+    $('tbody.project-group').append(context);
+    "<% } %>"
+
+    /* 팀구성 */
+    "<% for (var i in proj_info) { %>"
+    var std = {
+      id: '<%=proj_info[i].id %>',
+      name: '<%=proj_info[i].name %>',
+      grade: '<%=proj_info[i].grade %>'
+    };
+    member.push(JSON.stringify(std));
+
+    var context = `<tr><td>${std.id}</td><td>${std.name}</td>
+          <td><input type="text" value="<%=proj_info[i].part%>" name="act${(member.length - 1)}" id="act${(member.length - 1)}" value=""></td>
+          <td><div class="radio">
+          <label><input type="radio" name="optradio" value="${(member.length - 1)}"></label>
+          </div></td></tr>`;
+    $('tbody.radio-group').append(context);
+    "if(proj_info[i].leader == proj_info[i].id)"
+    $(`input:radio[name=optradio]:input[value="${(member.length - 1)}"]`).attr("checked", true);
+    "<% } %>"
+
+    /* 참고 URL 등 */
+    "<% for (var i in referData) { %>"
+    var context = `<tr>
+          <td><input type="text" name="" id="referURL`
+      + (referData.length) +
+      `" value="<%=referData[i].url%>" class="form-control input-sm"></td>
+          <td><input type="text" name="" id="referBook`
+      + (referData.length) +
+      `" value="<%=referData[i].refer_Book%>" class="form-control input-sm"></td>
+      <td><input type="text" name="" id="referContext`
+      + (referData.length) +
+      `" value="<%=referData[i].refer_context%>" class="form-control input-sm"></td></tr>`;
+    $('tbody.refer-group').append(context);
+    referData.push("");
+    "<% } %>"
+
+
+    $('.delBtn')
+      .on('click', function () {
+        if (member.length != 0) {
+          $('tbody.radio-group > tr').eq(member.length).remove();
+          member.pop();
+        }
+      });
+
+    $('.pdelBtn')
+      .on('click', function () {
+        if (projects.length != 0) {
+          $('tbody.project-group > tr').eq(projects.length).remove();
+          projects.pop();
+        }
+      });
+
+    $('.getStd').keydown(function (e) {
+      if (e.keyCode == 13) {
+        var id = $(this).val();
+        $('.getStd').val('');
+
+        $.ajax({
+          url: '/searchId',
+          type: 'POST',
+          data: {
+            id: id
+          },
+          dataType: 'json',
+          success: function (res) {
+            addMember(res);
+          },
+          error: function (err) {
+            console.log(err);
+          }
+        });
+      }
+    });
+
+    $('.proj_id').keydown(function (e) {
+      if (e.keyCode == 13) {
+        var proj_id = $(this).val();
+        $('.proj_id').val('');
+
+        $.ajax({
+          url: '/search_proj_id',
+          type: 'POST',
+          data: {
+            proj_id: proj_id
+          },
+          dataType: 'json',
+          success: function (res) {
+            addProject(res);
+          },
+          error: function (err) {
+            console.log(err);
+          }
+        });
+      }
+    });
+
+    $('.referAddBtn').click(function () {
+      var context = `<tr>
+          <td><input type="text" name="" id="referURL`
+        + (referData.length) +
+        `" class="form-control input-sm"></td>
+          <td><input type="text" name="" id="referBook`
+        + (referData.length) +
+        `" class="form-control input-sm"></td>
+      <td><input type="text" name="" id="referContext`
+        + (referData.length) +
+        `" class="form-control input-sm"></td></tr>`;
+      $('tbody.refer-group').append(context);
+      referData.push("");
+    });
+
+
+    $('.referDelBtn')
+      .on('click', function () {
+        if (referData.length != 0) {
+          $('tbody.refer-group > tr').eq(referData.length).remove();
+          referData.pop();
+        }
+      });
+
+    function addProject(res) {
+      var project = { project_number: res.project_number, title: res.title, context: "null" };
+      console.log(JSON.stringify(project));
+
+      let z = true;
+      if (res.project_number) {
+
+        for (var i in projects) {
+          if (JSON.parse(projects[i]).project_number != project.project_number) {
+            if (i == projects.length - 1) z = true;
+          } else {
+            z = false;
+            break;
+          }
+        }
+        if (z) {
+          projects.push(JSON.stringify(project));
+
+          var context = `<tr>
+            <td>`+ project.project_number + `</td>
+            <td>`+ project.title + `</td><td>
+            <input type="text" name="" id="ref`
+            + (projects.length - 1) +
+            `" class="form-control input-sm">
+            </td></tr>`;
+          console.log(context);
+          $('tbody.project-group').append(context);
+        }
+      } else {
+        alert('해당 프로젝트가 없습니다.');
+      }
+    }
+
+    function addMember(res) {
+      var std = { id: res.id, name: res.name, grade: res.grade };
+      console.log(JSON.stringify(std));
+
+      let z = true;
+      if (res.id) {
+
+        for (var i in member) {
+          if (member[i] != JSON.stringify(std)) {
+            if (i == member.length - 1) z = true;
+          } else {
+            z = false;
+            break;
+          }
+        }
+        if (z) {
+          member.push(JSON.stringify(std));
+
+          var context = `<tr><td>${std.id}</td><td>${std.name}</td>
+          <td><input type="text" name="act${(member.length - 1)}" id="act${(member.length - 1)}" value=""></td>
+          <td><div class="radio">
+          <label><input type="radio" name="optradio" value="${(member.length - 1)}"></label>
+          </div></td></tr>`;
+
+          $('tbody.radio-group').append(context);
+        }
+
+      } else {
+        alert('해당 사용자가 없습니다.');
+      }
+    }
+
+    function projectList() {
+      $('.project-group tr').each(function () {
+        var project = {
+          project_number: $(this).closest('tr').find('td:eq(0)').text().trim(),
+          title: $(this).closest('tr').find('td:eq(1)').text().trim(),
+          context: 'null'
+        };
+        projects.push(JSON.stringify(project));
+      });
+
+    }
+
+
+    function submitData() {
+      console.log($('input:radio[name="optradio"]:checked').val());
+
+      if (!$('#title').val()) {
+        $('#title').focus();
+        return false;
+      }
+      if (!$('#update').val()) {
+        $('#update').focus();
+        return false;
+      }
+      if (member.length == 0) {
+        alert('참여자를 입력하세요!');
+        return false;
+      }
+      if (!$('input:radio[name="optradio"]:checked').val()) {
+        alert('팀장을 선택해주세요!');
+        return false;
+      }
+      if (!$('#message').val()) {
+        $('#message').focus();
+        return false;
+      }
+      return true;
+    }
+
+    $('input[type="text"]').keydown(function () {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+      }
+    });
+
+
+    $('#submit').click(function () {
+      if (submitData()) {
+        projectList();
+        refJSON = {};
+        var refData = [];
+        for (var i in projects) {
+          refJSON = JSON.parse(projects[i]);
+          refJSON.context = $(`#ref${i}`).val();
+          refData.push(JSON.stringify(refJSON));
+        }
+
+        var act = [];
+        for (var i in member) {
+          act.push($(`#act${i}`).val());
+        }
+
+        var referArray = new Array();
+        for (var i in referData) {
+          referArray.push(JSON.stringify({ referURL: $(`#referURL${i}`).val(), referBook: $(`#referBook${i}`).val(), referContext: $(`#referContext${i}`).val() }));
+        }
+
+        var formData = new FormData();
+
+        if ($('#imageURL')[0].files[0] == undefined) {
+          formData.append('imageURL', 'null');
+        } else {
+          formData.append('imageURL', $('#imageURL')[0].files[0]);
+        }
+        if ($('#resultURL')[0].files[0] == undefined) {
+          formData.append('resultURL', 'null');
+        } else {
+          formData.append('resultURL', $('#resultURL')[0].files[0]);
+        }
+        formData.append('project_number', '<%=proj_info[0].project_number%>');
+        formData.append('title', $('#title').val());
+        formData.append('type', $('select#project_type option:selected').val());
+        formData.append('date', $('#update').val());
+        formData.append('topic', $('#topic').val());
+        formData.append('member', JSON.stringify(member));
+        formData.append('act', JSON.stringify(act));
+        formData.append('context', $('#message').val());
+        formData.append('leader', $('input:radio[name="optradio"]:checked').val());
+        formData.append('leader_grade', JSON.parse(member[$('input:radio[name="optradio"]:checked').val()]).grade);
+        formData.append('refProject', projects.length != 0 ? JSON.stringify(refData) : "null");
+        formData.append('referURL', referArray.length != 0 ? JSON.stringify(referArray) : "null");
+
+
+        $.ajax({
+          url: '/updateProjectInfo',
+          data: formData,
+          processData: false,
+          contentType: false,
+          type: 'POST',
+          success: function (res) {
+            if (res.result) {
+              location.href = '/proj_info?num=' + res.id;
+            } else {
+              alert('문제가 발생하였습니다');
+              location.href = '/projects';
+            }
+            console.log('success');
+          },
+          err: function (err) {
+            console.log(err);
+          }
+        });
+      }
+    });
+
+  });
+</script>

@@ -1,6 +1,12 @@
 <br />
 
-<h3 class="prod_title">평가</h3>
+<h3 class="prod_title">평가
+  (평균 평점
+    <% for (var i=0; i<proj_info[0].avg_point-1; i++) { %>
+      <span class="fa fa-star" aria-hidden="true"></span>
+      <% } %>
+        <%=proj_info[0].avg_point%>점)
+</h3>
 
 <div class="col-md-6 col-sm-12">
 

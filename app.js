@@ -1,9 +1,16 @@
 const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 const session = require('express-session');
 const expressErrorHandler = require('express-error-handler');
-const route = require('./routes/index');
-const app = express();
+
+const get_router = require('./routes/get_router');
+const post_router = require('./routes/post_router');
+const mysqlConnection = require('./routes/mysqlConnection')();
+
+connection = mysqlConnection.init(); //전역객체 선언
+mysqlConnection.open();
 
 app.set('views');
 app.set('view engine', 'ejs');
@@ -18,7 +25,9 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-app.use(route);
+
+app.use(get_router);
+app.use(post_router);
 
 var errorHandler = expressErrorHandler({
   static: {
@@ -28,6 +37,13 @@ var errorHandler = expressErrorHandler({
 
 app.use(expressErrorHandler.httpError(404));
 app.use(errorHandler);
+
+user = {
+  id: "undefined",
+  name: "undefined",
+  major: "undefined",
+  user_type: "undefined"
+};
 
 // server open
 app.listen(app.get('port'), () => {

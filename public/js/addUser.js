@@ -6,7 +6,7 @@ function submit_form() {
     major: $('#major').val(),
     grade: $('#grade').val(),
     address: $('#address').val(),
-    encrollment: $('#encrollment').val(),
+    enrollment: $('#enrollment').val(),
     user_type: $('input:radio[name="user_type"]:checked').val(),
     professor: $('#professor').val()
   };

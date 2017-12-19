@@ -16,6 +16,8 @@
       </div>
       <div class="modal-body">
 
+        <div class="form-group" id="wins_info_0">
+        </div>
         <div class="form-group" id="wins_info_1">
         </div>
         <div class="row">
@@ -49,6 +51,19 @@
       </div>
       <div class="modal-footer">
         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+          <% var p = false;
+            for(var i in proj_info) {
+              if(proj_info[i].id == user.id || user.user_type == "A") {
+                p = true;
+                break;
+              }
+            }
+                                      
+            if(p) { %>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default delWins">삭제하기</button>
+          </div>
+          <% } %>
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default" data-dismiss="modal" role="button">Close</button>
           </div>

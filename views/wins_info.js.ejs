@@ -10,6 +10,7 @@
           success: function (req) {
             if ("<%= wins[i].wins_type %>" == 'T01') {
               $('#wins_type').text("공모전 성과");
+              $('#wins_info_0').html(`<label>성과 번호<h4>${req[0].wins_number}</h4></label>`);
               $('#wins_info_1').html(`<label>공모전 제목<h4>${req[0].title}</h4></label>`);
               $('#wins_info_2').html(`<label>성과 일시<h4>${req[0].date.split('T')[0]}</h4></label>`);
               $('#wins_info_4').html(`<label>수상이력<h4>${req[0].award}</h4></label>`);
@@ -17,6 +18,7 @@
               $('#wins_info_6').html(`<label>공모전 내용<h4>${req[0].contest_context}</h4></label>`);
             } else if ("<%= wins[i].wins_type %>" == 'T02') {
               $('#wins_type').text("논문 성과");
+              $('#wins_info_0').html(`<label>성과 번호<h4>${req[0].wins_number}</h4></label>`);
               $('#wins_info_1').html(`<label>논문 제목<h4>${req[0].title}</h4></label>`);
               $('#wins_info_2').html(`<label>성과 일시<h4>${req[0].date.split('T')[0]}</h4></label>`);
               $('#wins_info_3').html(`<label>논문 종류<h4>${req[0].paper_type}</h4></label>`);
@@ -33,6 +35,7 @@
               $('.wins-person').html(author);
             } else {
               $('#wins_type').text("특허 성과");
+              $('#wins_info_0').html(`<label>성과 번호<h4>${req[0].wins_number}</h4></label>`);
               $('#wins_info_1').html(`<label>특허 제목<h4>${req[0].title}</h4></label>`);
               $('#wins_info_2').html(`<label>출원번호<h4>${req[0].patent_number}</h4></label>`);
               $('#wins_info_3').html(`<label>출원일<h4>${req[0].date.split('T')[0]}</h4></label>`);
@@ -55,6 +58,21 @@
         });
       }
       `<% } %>`
+    });
+
+    $('.delWins').click(function () {
+      var del = confirm('해당 성과를 삭제하시겠습니까?');
+      if (del) {
+        $.ajax({
+          url: '/wins_del',
+          type: 'post',
+          data: { wins_number: $('#wins_info_0 h4').text() },
+          success: function (req) {
+            alert('삭제되었습니다.');
+            location.reload();
+          }
+        });
+      }
     });
   });
 </script>

@@ -4,26 +4,6 @@ $(document).ready(function () {
   var projects = new Array();
   var referData = new Array();
 
-  /* $('.step_no').css('background', '#ccc');
-
-  $('.step_no').click(function () {
-    $('.step_no').css('background', '#ccc');
-    $('#type').text($(this).context.nextSibling.nextSibling.children[0].innerHTML);
-    $(this).css('background', '#34495E');
-  });
-
-  $("#addItemBtn").click(function () {
-    // item 의 최대번호 구하기
-    var lastItemNo = $("#example tr:last").attr("class").replace("item", "");
-
-    var newitem = $("#example tr:eq(1)").clone();
-    newitem.removeClass();
-    newitem.find("td:eq(0)").attr("rowspan", "1");
-    newitem.addClass("item" + (parseInt(lastItemNo) + 1));
-
-    $("#example").append(newitem);
-  }); */
-
   $('.delBtn')
     .on('click', function () {
       if (member.length != 0) {
@@ -244,11 +224,19 @@ $(document).ready(function () {
       console.log(referArray);
 
       var formData = new FormData();
-      formData.append('imageURL', $('#imageURL')[0].files[0]);
+      if ($('#imageURL')[0].files[0] == undefined) {
+        formData.append('imageURL', 'null');
+      } else {
+        formData.append('imageURL', $('#imageURL')[0].files[0]);
+      }
+      if ($('#resultURL')[0].files[0] == undefined) {
+        formData.append('resultURL', 'null');
+      } else {
+        formData.append('resultURL', $('#resultURL')[0].files[0]);
+      }
       formData.append('title', $('#title').val());
       formData.append('type', $('select#project_type option:selected').val());
       formData.append('date', $('#update').val());
-      formData.append('resultURL', $('#resultURL')[0].files[0]);
       formData.append('topic', $('#topic').val());
       formData.append('member', JSON.stringify(member));
       formData.append('act', JSON.stringify(act));

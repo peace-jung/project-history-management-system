@@ -63,22 +63,64 @@
                   <div class="x_panel">
                     <h2>
                       <%= proj_info[0].title %>
+                      
+                        <!-- 관심 목록 추가/삭제 버튼 -->
                         <% if (cart.length == 0) { %>
                           <a id="CartBtn" class="btn btn-lg btn-danger" href="#" role="button" style="float:right;">
                             <span class="fa fa-heart-o" aria-hidden="true"></span>
                             관심목록 추가</a>
-                        <% } else {
+                          <% } else {
                           for (var i in cart) {
                         if(cart[i].project_number == proj_info[0].project_number) { %>
-                          <a id="CartBtn" class="btn btn-lg btn-danger" href="#" role="button" style="float:right;">
-                            <span class="fa fa-heart" aria-hidden="true"></span>
-                            관심목록 삭제</a>
-                          <% break; } else if(i == cart.length-1) { %>
                             <a id="CartBtn" class="btn btn-lg btn-danger" href="#" role="button" style="float:right;">
-                              <span class="fa fa-heart-o" aria-hidden="true"></span>
-                              관심목록 추가</a>
-                            <% }}} %>
+                              <span class="fa fa-heart" aria-hidden="true"></span>
+                              관심목록 삭제</a>
+                            <% break; } else if(i == cart.length-1) { %>
+                              <a id="CartBtn" class="btn btn-lg btn-danger" href="#" role="button" style="float:right;">
+                                <span class="fa fa-heart-o" aria-hidden="true"></span>
+                                관심목록 추가</a>
+                              <% }}} %>
+
+                                <!-- 프로젝트 삭제 버튼 -->
+                                <% var p = false;
+                            for(var i in proj_info) {
+                              if(proj_info[i].id == user.id || user.user_type == "A") {
+                                p = true;
+                                break;
+                              }
+                            }
+                            if(p) { %>
+                                  <a id="delProject" class="btn btn-lg btn-warning" href="#" role="button" style="float:right;">프로젝트 삭제</a>
+                                  <a class="btn btn-lg btn-info" onclick="$('#gogo').submit()" role="button" style="float:right;">프로젝트 수정</a>
+                                  <% } %>
+                                    <form id="gogo" method="POST" action="/updateProject">
+                                      프로젝트 번호 :
+                                      <input name="project_number" value="<%= proj_info[0].project_number %>" style="border:none;" readonly>
+                                    </form>
+                                    <h4 style="color:#73879C;"> 평균 평점 
+                                      <% for (var i=0; i<proj_info[0].avg_point-1; i++) { %>
+                                      <span class="fa fa-star" aria-hidden="true"></span>
+                                      <% } %>
+                                      <%=proj_info[0].avg_point%>점</h4>
                     </h2>
+
+                    <script>
+                      $('#delProject').click(function () {
+                        var del = confirm('해당 프로젝트를 삭제하시겠습니까?');
+                        if (del) {
+                          $.ajax({
+                            url: '/project_del',
+                            type: 'post',
+                            data: { project_number: '<%= proj_info[0].project_number %>' },
+                            success: function (req) {
+                              alert('삭제되었습니다.');
+                              location.href = '/projects';
+                            }
+                          });
+                        }
+                      });
+                    </script>
+
                     <div class="clearfix"></div>
 
                     <div class="x_content">
@@ -166,6 +208,6 @@
 <script src="./js/searchbar.js"></script>
 <script src="./js/comment.js"></script>
 <% include ./wins_info.js.ejs %>
-<% include ./cart.js.ejs %>
+  <% include ./cart.js.ejs %>
 
 </html>
