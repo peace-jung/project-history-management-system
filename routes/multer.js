@@ -3,7 +3,7 @@ const multer = require('multer');
 // 파일 업로드 시 저장공간 설정
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public/images') // 파일 저장 위치
+    cb(null, 'public/files') // 파일 저장 위치
   },
   filename: function (req, file, cb) {
     // 저장될 파일 이름 + 확장자

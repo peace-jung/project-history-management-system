@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-/* 
-const mysqlConnection = require('../mysqlConnection')(); */
 const multer = require('./multer')();
-
 const login = require('./post/login');
 const edit_profile = require('./post/edit_profile');
 const edituser = require('./post/edituser');

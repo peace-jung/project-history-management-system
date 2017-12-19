@@ -2,13 +2,9 @@
 # 파일이름을 넣으면 모든 디렉토리에서 해당 파일 무시
 # ignore-file.txt
 
-<<<<<<< HEAD
-# /로 끝나면 해당 디렉토리 전체를 무시 
-=======
 # /로 끝나면 해당 디렉토리 전체를 무시
->>>>>>> fe4a5cc1863434991e423b6cb9702e53883dfd1c
 # ignore-dir/
-public\images/
+files/
 bootstrap/
 
 # 와일드카드도 사용가능
